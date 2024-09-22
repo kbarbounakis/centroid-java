@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import io.reactivex.rxjava3.core.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 /**
  * Unit test for simple App.
@@ -14,10 +17,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class QueryTest {
 
     @Test
-    public void shouldCreateField() {
-        QueryField field = new QueryField("id").from("users");
+    public void shouldCreateField() throws JsonProcessingException {
+        QueryField field = new QueryField("id");
         assertEquals("id", field.getName());
-        assertEquals("users", field.getCollection());
+        String json = new ObjectMapper().writeValueAsString(field);
+        assertEquals("{\"id\":1}", json);
     }
 
     @Test

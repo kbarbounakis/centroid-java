@@ -7,6 +7,7 @@
 
 # User-specific stuff
 .idea
+.vscode
 
 # Gradle
 .idea/**/gradle.xml
