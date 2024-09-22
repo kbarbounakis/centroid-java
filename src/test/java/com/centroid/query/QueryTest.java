@@ -5,6 +5,9 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.subjects.BehaviorSubject;
 import org.junit.jupiter.api.Test;
 import io.reactivex.rxjava3.core.*;
+
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -22,7 +25,13 @@ public class QueryTest {
         assertEquals("id", field.getName());
         String json = new ObjectMapper().writeValueAsString(field);
         assertEquals("{\"id\":1}", json);
+        LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
+        map.put("id", 1);
+        map.put("name", 1);
+        json = new ObjectMapper().writeValueAsString(map);
+        assertEquals("{\"id\":1,\"name\":1}", json);
     }
+
 
     @Test
     public void shouldUseFlowable() {

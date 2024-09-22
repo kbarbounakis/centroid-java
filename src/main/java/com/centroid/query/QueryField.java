@@ -13,10 +13,6 @@ public class QueryField extends QueryElement<String,Object> {
         super(name, 1);
     }
 
-    public QueryField() {
-        super(null, 0);
-    }
-
     public String getName() {
         if (this.getKey() == null) {
             return null;
@@ -27,11 +23,8 @@ public class QueryField extends QueryElement<String,Object> {
     }
 
     public String getCollection() {
-        if (this.getKey() == null) {
-            return null;
-        }
         String key = this.getKey();
-        String[] array = key.split(".");
+        String[] array = key.split("\\.");
         if (array.length == 1) {
             return null;
         }
@@ -39,7 +32,7 @@ public class QueryField extends QueryElement<String,Object> {
     }
 
     public QueryField from(String collection) {
-        this.key = collection + "." + this.key;
+        this.key = collection + "." + this.getName();
         return this;
     }
 
