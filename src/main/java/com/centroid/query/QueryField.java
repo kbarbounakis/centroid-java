@@ -13,6 +13,10 @@ public class QueryField extends QueryElement<String,Object> {
         super(name, 1);
     }
 
+    public QueryField(String name, Object value) {
+        super(name, value);
+    }
+
     public String getName() {
         if (this.getKey() == null) {
             return null;
